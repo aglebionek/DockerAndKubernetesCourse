@@ -19,3 +19,11 @@ RUN apk add --update gcc
 # This is the startup command for the image, as an image consists of a filesystem and a command that's run when
 #   the image is run as a container
 CMD ["redis-server"]
+
+# We very well can create the same image manually, by running alpine, making changes to it's filesystem and saving it as a new image
+# docker run -it alpine sh
+# Inside the container we run
+# apk add --update redis
+# apk add --update gcc
+# Then we open a new terminal window, get the container's id with docker ps, and save it with
+# docker commit -c 'CMD ["redis-server"]' CONTAINERID
