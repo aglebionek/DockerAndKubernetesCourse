@@ -3,9 +3,12 @@ FROM node:alpine
 # set current working directory inside the container
 WORKDIR /usr/app
 # copy instruction moves files from our filesystem (relative to the build context) to the image
-COPY ./ ./
+# Here I copy only the package.json file, so we can avoid unnecessary rebuilds after modyfying index.js
+COPY ./package.json ./
 # install npm inside image
 RUN npm install
+# as the last step we copy the index.js. We don't need to copy the Dockerfile
+COPY ./index.js ./
 # run npm start on image startup
 CMD ["npm", "start"]
 
