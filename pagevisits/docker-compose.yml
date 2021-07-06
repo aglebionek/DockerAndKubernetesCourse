@@ -1,0 +1,13 @@
+# using docker-compose to run multiple images, they will run on the same network, thus having the ability to
+# communicate with one another
+# after making any changes to index.js the node-app image must be rebuild, it can be done with
+# docker-compose build
+# the entire thing is run with docker-compose up
+version: '3'
+services: 
+    redis-server:
+        image: 'redis'
+    node-app:
+        build: .
+        ports: 
+            - "8081:8081"
