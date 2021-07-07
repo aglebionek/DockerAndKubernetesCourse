@@ -1,0 +1,11 @@
+# to build from Dockerfile with .dev extension we need to run 
+# docker build -f Dockerfile.dev .
+FROM node:alpine
+
+WORKDIR /app
+
+COPY ./package.json ./
+
+RUN npm install
+
+CMD [ "npm", "run", "start" ]
