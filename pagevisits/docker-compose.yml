@@ -7,7 +7,9 @@ version: '3'
 services: 
     redis-server:
         image: 'redis'
+        restart: 'always'
     node-app:
+        restart: 'unless-stopped'
         build: .
         ports: 
-            - "8081:8081"
+            - '8081:8081'
