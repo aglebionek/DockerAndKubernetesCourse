@@ -4,16 +4,16 @@ services:
   - docker
 
 before_install:
-  - docker build -t aglebionek/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t aglebionek/react-test -f ./complex/client/Dockerfile.dev ./complex/client
 
 script:
   - docker run -e CI=true aglebionek/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t aglebionek/multi-client ./client
-  - docker build -t aglebionek/multi-nginx ./nginx
-  - docker build -t aglebionek/multi-server ./server
-  - docker build -t aglebionek/multi-worker ./worker
+  - docker build -t aglebionek/multi-client ./complex/client
+  - docker build -t aglebionek/multi-nginx ./complex/nginx
+  - docker build -t aglebionek/multi-server ./complex/server
+  - docker build -t aglebionek/multi-worker ./complex/worker
   # # Log in to the docker CLI
   # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # # Take those images and push them to docker hub
