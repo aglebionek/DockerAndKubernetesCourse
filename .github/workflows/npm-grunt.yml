@@ -1,0 +1,25 @@
+name: build and test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: '${{ matrix.os }}'
+    strategy:
+      matrix:
+        os:
+          - ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: >-
+          docker build -t aglebionek/react-test -f
+          ./complex/client/Dockerfile.dev ./complex/client
+      - run: docker run -e CI=true aglebionek/react-test npm test -- --coverage
+      - run: docker build -t aglebionek/multi-client ./complex/client
+      - run: docker build -t aglebionek/multi-nginx ./complex/nginx
+      - run: docker build -t aglebionek/multi-server ./complex/server
+      - run: docker build -t aglebionek/multi-worker ./complex/worker
