@@ -8,11 +8,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: '${{ matrix.os }}'
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: >-
@@ -23,3 +19,21 @@ jobs:
       - run: docker build -t aglebionek/multi-nginx ./complex/nginx
       - run: docker build -t aglebionek/multi-server ./complex/server
       - run: docker build -t aglebionek/multi-worker ./complex/worker
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - run: docker push aglebionek/multi-client
+      - run: docker push aglebionek/multi-nginx
+      - run: docker push aglebionek/multi-server
+      - run: docker push aglebionek/multi-worker
+      # # Log in to the docker CLI
+  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # # Take those images and push them to docker hub
+  # - docker push aglebionek/multi-client
+  # - docker push aglebionek/multi-nginx
+  # - docker push aglebionek/multi-server
+  # - docker push aglebionek/multi-worker
