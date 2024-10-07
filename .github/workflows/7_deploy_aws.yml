@@ -8,16 +8,16 @@ on:
       - '7-section/**'
 
 jobs:
-  build:
+  build, test and deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Login to DockerHub, build the image and run tests
+          # docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         run: |
           cd 7-section
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -f Dockerfile.dev . -t @aglebionek/docker-course-section-7
           docker run -e CI=true @aglebionek/docker-course-section-7 npm run test
 
