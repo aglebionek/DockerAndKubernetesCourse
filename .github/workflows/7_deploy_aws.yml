@@ -1,5 +1,7 @@
 name: Build, test and deploy to AWS Elastic Beanstalk
 
+# on: workflow_dispatch
+
 on:
   push:
     branches:
@@ -8,7 +10,7 @@ on:
       - '7-section/**'
 
 jobs:
-  build, test and deploy:
+  build-test-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
