@@ -1,6 +1,10 @@
-FROM node:16-alpine
- 
+FROM alpine:latest
+
+RUN addgroup -S node && adduser -S node -G node
+RUN apk add --no-cache npm
+
 USER node
+
  
 RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
