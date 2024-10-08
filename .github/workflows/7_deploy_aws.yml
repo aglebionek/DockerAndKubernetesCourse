@@ -24,7 +24,7 @@ jobs:
           docker run -e CI=true aglebionek/docker-course-section-7 npm run test
 
       - name: Generate deployment package
-        run: zip -r deploy.zip . -x '*.git*'
+        run: zip -r deploy.zip ./7-section -x '*.git*'
 
       - name: Deploy to AWS Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v18
