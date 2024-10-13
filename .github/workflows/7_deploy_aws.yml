@@ -18,7 +18,7 @@ jobs:
         run: |
           cd 7-section
           docker build -f Dockerfile.dev . -t aglebionek/docker-course-section-7:dev
-          docker run -e CI=true aglebionek/docker-course-section-7 npm run test
+          docker run -e CI=true aglebionek/docker-course-section-7:dev npm run test
 
       - name: Generate deployment zip package
         run: |
