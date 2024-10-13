@@ -1,15 +1,12 @@
 FROM alpine:latest
 
-RUN addgroup -S node && adduser -S node -G node
 RUN apk add --no-cache npm
+RUN apk add --no-cache curl
 
-USER node
+WORKDIR /app
+
+COPY . .
  
-RUN mkdir -p /home/node/app
-WORKDIR /home/node/app
- 
-COPY --chown=node:node ./package.json ./
 RUN npm install
-COPY --chown=node:node ./ ./
  
 CMD ["npm", "run", "start"]

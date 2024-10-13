@@ -1,9 +1,9 @@
 const keys = require('./keys');
 
-// Express App Setup
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const redis = require('redis');
 
 const app = express();
 app.use(cors());
@@ -17,10 +17,7 @@ const pgClient = new Pool({
   database: keys.pgDatabase,
   password: keys.pgPassword,
   port: keys.pgPort,
-  ssl:
-    process.env.NODE_ENV !== 'production'
-      ? false
-      : { rejectUnauthorized: false },
+  ssl: false
 });
 
 pgClient.on('connect', (client) => {
@@ -30,7 +27,6 @@ pgClient.on('connect', (client) => {
 });
 
 // Redis Client Setup
-const redis = require('redis');
 const redisClient = redis.createClient({
   host: keys.redisHost,
   port: keys.redisPort,
