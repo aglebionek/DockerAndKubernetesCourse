@@ -1,4 +1,4 @@
-name: Build, test and deploy to AWS Elastic Beanstalk
+name: 11 - Build, test and deploy to AWS Elastic Beanstalk
 
 on:
   push:
