@@ -16,6 +16,7 @@ services:
       - PGDATABASE=$PGDATABASE
       - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
+      - POSTGRES_CA_CERT=$POSTGRES_CA_CERT
   worker:
     image: 'aglebionek/section-11-worker'
     mem_limit: 128m
