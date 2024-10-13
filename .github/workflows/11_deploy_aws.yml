@@ -1,0 +1,54 @@
+name: Build, test and deploy to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '11-section/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build the dev image and run tests
+        run: |
+          cd 11-section
+          docker build -t aglebionek/react-test -f ./client/Dockerfile.dev ./client
+          docker run -e CI=true aglebionek/react-test npm test
+
+      - name: Build production images
+        run: |
+          cd 11-section
+          docker build -t aglebionek/section-11-client ./client
+          docker build -t aglebionek/section-11-nginx ./nginx
+          docker build -t aglebionek/section-11-server ./server
+          docker build -t aglebionek/section-11-worker ./worker
+
+      - name: Log in to Docker Hub and push images
+      - run: |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push aglebionek/section-11-client
+          docker push aglebionek/section-11-nginx
+          docker push aglebionek/section-11-server
+          docker push aglebionek/section-11-worker
+
+      - name: Generate deployment zip package
+        run: |
+          cd 11-section
+          zip -r ../deploy.zip .
+
+      - name: Deploy to AWS Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: 11-section
+          environment_name: 11-section-env
+          existing_bucket_name: elasticbeanstalk-eu-north-1-343218192670
+          region: eu-north-1
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip

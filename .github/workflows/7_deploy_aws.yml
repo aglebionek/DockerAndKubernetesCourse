@@ -1,7 +1,5 @@
 name: Build, test and deploy to AWS Elastic Beanstalk
 
-# on: workflow_dispatch
-
 on:
   push:
     branches:

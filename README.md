@@ -13,4 +13,5 @@ The _OLD_ directory contains all the code I made when I first started the course
 Below will be the list of changes I made to the code in the course. 
 
 - Decided to use Github Actions instead of Travis CI, as I'm already familiar with GA. I also don't want to setup a Travis CI account.
-- Rewrote the Dockerfiles to use multi-stage builds, as the course is a bit outdated. I've also switched to alpine images.
+- Rewrote the Dockerfiles to use alpine images .
+- Had to make some changes in the 7_deploy_aws.yml workflow to account for the fact this is a monorepo.
