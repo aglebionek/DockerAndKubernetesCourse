@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "nginx",
-      "image": "docker.io/aglebionek/11-section-nginx:latest",
+      "image": "docker.io/aglebionek/section-11-nginx:latest",
       "essential": true,
       "portMappings": [
         {
@@ -18,19 +18,19 @@
     },
     {
       "name": "client",
-      "image": "docker.io/aglebionek/11-section-client:latest",
+      "image": "docker.io/aglebionek/section-11-client:latest",
       "hostname": "client",
       "essential": false
     },
     {
       "name": "server",
-      "image": "docker.io/aglebionek/11-section-server:latest",
+      "image": "docker.io/aglebionek/section-11-server:latest",
       "hostname": "api",
       "essential": false
     },
     {
       "name": "worker",
-      "image": "docker.io/aglebionek/11-section-worker:latest",
+      "image": "docker.io/aglebionek/section-11-worker:latest",
       "essential": false
     }
   ]
