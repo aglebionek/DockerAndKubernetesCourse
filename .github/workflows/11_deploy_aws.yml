@@ -39,6 +39,8 @@ jobs:
       - name: Generate deployment zip package
         run: |
           cd 11-section
+          mkdir ./server/certs
+          echo "${{ secrets.POSTGRES_CERT }}" > ./server/certs/ca-certificate.crt
           zip -r ../deploy.zip .
 
       - name: Deploy to AWS Elastic Beanstalk

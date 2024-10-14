@@ -1,8 +1,10 @@
 const keys = require('./keys');
 
-const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const redis = require('redis');
 
 const app = express();
@@ -20,7 +22,7 @@ const pgClient = new Pool({
   ssl: { 
     require: true,
     rejectUnauthorized: true,
-    ca: process.env.POSTGRES_CA_CERT
+    ca: fs.readFileSync(path.join(__dirname, 'certs', 'ca-certificate.crt')).toString(),
   } 
 });
 
