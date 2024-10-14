@@ -23,6 +23,8 @@ jobs:
       - name: Build production images
         run: |
           cd 11-section
+          mkdir ./server/certs
+          echo "${{ secrets.POSTGRES_CERT }}" > ./server/certs/ca-certificate.crt
           docker build -t aglebionek/section-11-client ./client
           docker build -t aglebionek/section-11-nginx ./nginx
           docker build -t aglebionek/section-11-server ./server
@@ -39,8 +41,6 @@ jobs:
       - name: Generate deployment zip package
         run: |
           cd 11-section
-          mkdir ./server/certs
-          echo "${{ secrets.POSTGRES_CERT }}" > ./server/certs/ca-certificate.crt
           zip -r ../deploy.zip .
 
       - name: Deploy to AWS Elastic Beanstalk
