@@ -17,3 +17,6 @@ The _OLD_ directory contains all the code I made when I first started the course
 
 ### Section 11 - Multi-Container Deployments to Kubernetes (directory: `11-section`)
 - Had to include certificates for postgres. The course doesn't mention this, but it's necessary for the server to work, and to connect to the database.
+
+### Section 12 - Onwards to Kubernetes! (directory: `12-section`)
+- Uploaded the yml files for the Pod and Service. Uploaded a README.md file with some commands and explanation about WSL2 setup.
