@@ -7,7 +7,7 @@ This repository was started a long time ago, when I first started this course. A
 
 The _OLD_ directory contains all the code I made when I first started the course. Eveyrthing else is new and will follow the structure of the course, unlike the old sections.
 
-## Custom changes in the course code
+## Custom changes in the course code/repo changes
 ### General 
 - Decided to use Github Actions instead of Travis CI, as I'm already familiar with GA. I also don't want to setup a Travis CI account.
 - Rewrote the Dockerfiles to use alpine images, npm ci instead of npm i.
@@ -17,6 +17,7 @@ The _OLD_ directory contains all the code I made when I first started the course
 
 ### Section 11 - Multi-Container Deployments to Kubernetes (directory: `11-section`)
 - Had to include certificates for postgres. The course doesn't mention this, but it's necessary for the server to work, and to connect to the database.
+[Source](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
 
 ### Section 12 - Onwards to Kubernetes! (directory: `12-section`)
 - Uploaded the yml files for the Pod and Service. 
@@ -26,4 +27,4 @@ The _OLD_ directory contains all the code I made when I first started the course
 - Replaced the Pod yml file from the previous section with a Deployment file.
 - Uploaded the Service yml file from previous section. 
 - Uploaded an expanded README.md file from the previous section, with more commands, better terminology and a note about updating image versions.
-- Updated README.md with a note about reconfiguring docker command to use minikube's docker daemon.
+- Updated README.md with a note about accessing containers inside a node.

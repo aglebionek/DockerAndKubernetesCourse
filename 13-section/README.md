@@ -39,6 +39,14 @@ Sources for the variable names:
 Example:
 ```kubectl set image deployment/client-deployment client=stephengrider/multi-client:v5```
 
-### Reconfiguring docker command to use minikube's docker daemon
+### Accessing containers inside a node
+When using minikube, we can access the containers inside the node in a few ways.
+
 - ```eval $(minikube docker-env)``` - sets the docker environment variables to use minikube's docker daemon. Doing that will cause running any docker command,
 for example ```docker ps``` to work with the containers inside minikube.
+
+There are other ways to interact with the docker inside a node. For example:
+- ```docker exec -it <node_name> sh``` - opens a shell inside the container. We can run docker commands from there. (in my case the node_name is `minikube`)
+
+Using kubectl to interact with the containers is also possible. For example:
+- ```kubectl exec -it <container_name> sh``` - opens a shell inside the container, same as docker exec.
