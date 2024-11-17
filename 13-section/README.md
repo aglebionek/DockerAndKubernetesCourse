@@ -6,7 +6,7 @@
 ### Status commands
 - ```minikube status``` - shows the status of the minikube
 - ```kubectl get <resource>``` - lists all the resources, e.g. deployments, pods, services
-- ```kubectl describe pods <pod name>``` - shows more information about the pod
+- ```kubectl describe <resource> <resource name>``` - shows more information about the resource
 
 ### Accessing the pod in the browser with WSL2
 "The network is limited if using the Docker driver on Darwin, Windows, or WSL, and the Node IP is not reachable directly." [source](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
@@ -19,3 +19,22 @@ Because of that, minikube can create a tunnel for us to access the pod in the br
 - ```minikube ip``` - shows the minikube ip
 - Access the pod in the browser with the following url: ```http://<minikube ip>:<nodePort>```
 - Docker Desktop should work with a localhost url, so ```http://localhost:<nodePort>```
+
+### Updating a resource to use the actual :latest image
+- [Kubernetes github issue reference](https://github.com/kubernetes/kubernetes/issues/33664)
+You have to modify the resource file for the apply command to run. This might create issues, if for example you're using a :latest tag, and the image is updated. The resource file will not be updated, and the apply command will not run.
+Possible solutions include:
+- Delete the resource and apply it again (not really recommended)
+Use actual version tags instead of :latest, and either
+- Update the tag in the yaml file manually
+- Use a command to update the image in the resource file, like the following:
+```kubectl set image <resource_type>/<resource_name> <container_name>=<new_image>```
+
+Sources for the variable names:
+- <resource_type> - kind in the resource file, e.g. deployment
+- <resource_name> - metadata.name in the resource file, e.g. client-deployment
+- <container_name> - containers.name in the resource file, e.g. client
+- <new_image> - the full name of the image, including the tag, e.g. stephengrider/multi-client:v5
+
+Example:
+```kubectl set image deployment/client-deployment client=stephengrider/multi-client:v5```
