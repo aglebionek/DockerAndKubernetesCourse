@@ -26,3 +26,4 @@ The _OLD_ directory contains all the code I made when I first started the course
 - Replaced the Pod yml file from the previous section with a Deployment file.
 - Uploaded the Service yml file from previous section. 
 - Uploaded an expanded README.md file from the previous section, with more commands, better terminology and a note about updating image versions.
+- Updated README.md with a note about reconfiguring docker command to use minikube's docker daemon.

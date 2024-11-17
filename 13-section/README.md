@@ -38,3 +38,7 @@ Sources for the variable names:
 
 Example:
 ```kubectl set image deployment/client-deployment client=stephengrider/multi-client:v5```
+
+### Reconfiguring docker command to use minikube's docker daemon
+- ```eval $(minikube docker-env)``` - sets the docker environment variables to use minikube's docker daemon. Doing that will cause running any docker command,
+for example ```docker ps``` to work with the containers inside minikube.
