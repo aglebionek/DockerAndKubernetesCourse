@@ -28,3 +28,6 @@ The _OLD_ directory contains all the code I made when I first started the course
 - Uploaded the Service yml file from previous section. 
 - Uploaded an expanded README.md file from the previous section, with more commands, better terminology and a note about updating image versions.
 - Updated README.md with a note about accessing containers inside a node.
+
+### Section 14 - A Multi-Container App with Kubernetes (directory: `14-section`)
+- Using the app files directly from the course repo, as they are already setup for local k8s.
