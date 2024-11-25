@@ -2,6 +2,7 @@
 - ```minikube start``` - starts the minikube cluster
 - ```kubectl apply -f .``` - applies all configurations in the current directory
 - ```kubectl delete -f .``` - deletes all the configurations in the current directory
+- ```kubectl delete <resource> <resource name>``` - deletes a specific resource
 
 ### Status commands
 - ```minikube status``` - shows the status of the minikube
