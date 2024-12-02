@@ -8,6 +8,7 @@
 - ```minikube status``` - shows the status of the minikube
 - ```kubectl get <resource>``` - lists all the resources, e.g. deployments, pods, services
 - ```kubectl describe <resource> <resource name>``` - shows more information about the resource
+- ```kubectl logs <pod name>``` - shows the logs of the pod
 
 ### Accessing the pod in the browser with WSL2
 "The network is limited if using the Docker driver on Darwin, Windows, or WSL, and the Node IP is not reachable directly." [source](https://minikube.sigs.k8s.io/docs/handbook/accessing/)
