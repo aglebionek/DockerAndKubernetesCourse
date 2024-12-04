@@ -1,6 +1,5 @@
 # Docker and Kubernetes: The Complete Guide
-A repository for the course [Docker and Kubernetes: The Complete Guide](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/) on Udemy.
-The course is taught by Stephen Grider.
+A repository for the [Docker and Kubernetes: The Complete Guide](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/) course on Udemy, taught by Stephen Grider.
 
 ### Note
 This repository was started a long time ago, when I first started this course. At the time, I only finished the Docker part of the course, which was extremely helpful. Now, years later, I'm going to finish the course, as both Kubernetes and AWS I want to laearn for my future career.
@@ -31,3 +30,7 @@ The _OLD_ directory contains all the code I made when I first started the course
 
 ### Section 14 - A Multi-Container App with Kubernetes (directory: `14-section`)
 - Using the app files directly from the course repo, as they are already setup for local k8s.
+- Using a k8s ConfigMap and Secret objects for the environment variables, instead of writing them directly in the yml files.
+The template for the objects is stored in .envs.template. Locally, the file was named .envs.yml. I've changed it here to:
+    1. Hide secrets from the repo.
+    2. Avoid the .yml file to be picked up by kubectl commands.

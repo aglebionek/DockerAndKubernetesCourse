@@ -31,3 +31,12 @@ spec:
           image: stephengrider/multi-server
           ports:
             - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: env-config
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-secret
+                  key: POSTGRES_PASSWORD
