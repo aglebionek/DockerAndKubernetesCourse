@@ -6,6 +6,7 @@
 
 ### Status commands
 - ```minikube status``` - shows the status of the minikube
+- ```minikube dashboard``` - opens the kubernetes dashboard in the browser (for WSL2, provides a link to the dashboard)
 - ```kubectl get <resource>``` - lists all the resources, e.g. deployments, pods, services
 - ```kubectl describe <resource> <resource name>``` - shows more information about the resource
 - ```kubectl logs <pod name>``` - shows the logs of the pod
