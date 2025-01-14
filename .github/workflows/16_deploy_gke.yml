@@ -1,0 +1,71 @@
+name: Deploy MultiK8s
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '16-section/**'
+
+env:
+  SHA: $(git rev-parse HEAD)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build the dev image and run tests
+        run: |
+          cd 16-section
+          docker build -t aglebionek/react-test -f ./client/Dockerfile.dev ./client
+          docker run -e CI=true aglebionek/react-test npm test
+
+      - name: Set Service Key
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+
+      - name: Set Project
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: 
+
+      - name: Auth
+        run: |-
+          gcloud --quiet auth configure-docker
+
+      - name: Get Credentials
+        uses: google-github-actions/get-gke-credentials@v0
+        with:
+          cluster_name: multi-cluster
+          location: europe-central2-b
+
+      - name: Build production images
+        run: |
+          cd 16-section
+          mkdir ./server/certs
+          echo "${{ secrets.POSTGRES_CERT }}" > ./server/certs/ca-certificate.crt
+          docker build -t aglebionek/section-16-client:latest -t aglebionek/section-16-client:${{ env.SHA }} ./client
+          docker build -t aglebionek/section-16-server:latest -t aglebionek/section-16-server:${{ env.SHA }} ./server
+          docker build -t aglebionek/section-16-worker:latest -t aglebionek/section-16-worker:${{ env.SHA }} ./worker
+
+      - name: Log in to Docker Hub and push production images
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+
+          docker push aglebionek/section-16-client:latest
+          docker push aglebionek/section-16-server:latest
+          docker push aglebionek/section-16-worker:latest
+
+          docker push aglebionek/section-16-client:${{ env.SHA }}
+          docker push aglebionek/section-16-server:${{ env.SHA }}
+          docker push aglebionek/section-16-worker:${{ env.SHA }}
+
+      - name: Apply
+        run: |-
+          kubectl apply -f k8s
+          kubectl set image deployments/client-deployment client=aglebionek/section-16-client:${{ env.SHA }}
+          kubectl set image deployments/server-deployment server=aglebionek/section-16-server:${{ env.SHA }}
+          kubectl set image deployments/worker-deployment worker=aglebionek/section-16-worker:${{ env.SHA }}

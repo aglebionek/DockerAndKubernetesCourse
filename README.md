@@ -9,7 +9,7 @@ The _OLD_ directory contains all the code I made when I first started the course
 ## Custom changes in the course code/repo changes
 ### General 
 - Decided to use Github Actions instead of Travis CI, as I'm already familiar with GA. I also don't want to setup a Travis CI account.
-- Rewrote the Dockerfiles to use alpine images, npm ci instead of npm i.
+- Rewrote some Dockerfiles to use alpine images, npm ci instead of npm i.
 
 ### Section 7 - Continuous Integration and Deployment with AWS (directory: `7-section`)
 - Had to make some changes in the 7_deploy_aws.yml workflow to account for the fact this is a monorepo.
@@ -34,3 +34,9 @@ The _OLD_ directory contains all the code I made when I first started the course
 The template for the objects is stored in .envs.template. Locally, the file was named .envs.yml. I've changed it here to:
     1. Hide secrets from the repo.
     2. Avoid the .yml file to be picked up by kubectl commands.
+
+### Section 15 - Handling Traffic with Ingress Controllers (directory: `15-section`)
+- Included an image schema for a node using an Ingress Controller.
+- Included a README.md file with setup instructions for WSL2 and accessing the Ingress service.
+
+### Section 16 - Kubernetes Production Deployment (directory: `16-section`)
