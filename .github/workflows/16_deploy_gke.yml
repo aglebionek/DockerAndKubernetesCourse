@@ -1,4 +1,5 @@
-name: Deploy MultiK8s
+# https://docs.github.com/en/actions/use-cases-and-examples/deploying/deploying-to-google-kubernetes-engine (source to rework the workflow)
+name: 16 - Kubernetes Production Deployment on GKE
 on:
   push:
     branches:
