@@ -1,4 +1,5 @@
 {
+  "version": "0.0.1",
   "dependencies": {
     "body-parser": "*",
     "cors": "2.8.4",
