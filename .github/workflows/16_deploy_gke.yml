@@ -65,8 +65,10 @@ jobs:
           docker push aglebionek/section-16-worker:${{ env.SHA }}
 
       - name: Apply
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD_BASE64 }}
         run: |-
-          sed -i "s/POSTGRES_PASSWORD: BASE64_ENCODED_PASSWORD/POSTGRES_PASSWORD: $(echo -n ${{ secrets.POSTGRES_PASSWORD }} )/" ./16-section/_k8s/.envs.yml
+          sed -i "s/POSTGRES_PASSWORD: BASE64_ENCODED_PASSWORD/POSTGRES_PASSWORD: $(echo -n $POSTGRESS_PASSWORD )/" ./16-section/_k8s/.envs.yml
 
           kubectl apply -f ./16-section/_k8s
           kubectl set image deployments/client-deployment client=aglebionek/section-16-client:${{ env.SHA }}
