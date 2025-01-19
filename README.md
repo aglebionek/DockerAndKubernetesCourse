@@ -42,3 +42,6 @@ The template for the objects is stored in .envs.template. Locally, the file was 
 - Included a README.md file with setup instructions for WSL2 and accessing the Ingress service.
 
 ## Section 16 - Kubernetes Production Deployment on GKE (directory: `16-section`)
+- Used the ConfigMap and Secret objects from section 14, instead of configuring them manually in the yml files/google cloud console.
+- Modified the github workflow to replace the secrets in the k8s yml files with the actual values from repo secrets using sed.
+- Included a README.md file with commands to authenticate to the cluster, install helm and ingress inside the cluster.
