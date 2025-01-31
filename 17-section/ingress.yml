@@ -1,0 +1,55 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  # annotations is additional configuration for an object
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    # rewrite-target is used to rewrite the URL, in this case, we are removing the /api/ from the URL
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  # ingressClassName is the name of the ingress controller
+  ingressClassName: nginx
+  tls:
+    # same as dnsNames in the Certificate object
+    - hosts:
+        - yourdomain.com
+        - www.yourdomain.com
+      secretName: yourdomain-secret-com # same as secretName in the Certificate object
+  rules:
+    - host: yourdomain.com
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: client-cluster-ip
+                port:
+                  number: 3000
+          - path: /api/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: server-cluster-ip
+                port:
+                  number: 5000
+    - host: www.yourdomain.com
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: client-cluster-ip
+                port:
+                  number: 3000
+          - path: /api/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: server-cluster-ip
+                port:
+                  number: 5000

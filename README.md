@@ -45,3 +45,10 @@ The template for the objects is stored in .envs.template. Locally, the file was 
 - Used the ConfigMap and Secret objects from section 14, instead of configuring them manually in the yml files/google cloud console.
 - Modified the github workflow to replace the secrets in the k8s yml files with the actual values from repo secrets using sed.
 - Included a README.md file with commands to authenticate to the cluster, install helm and ingress inside the cluster.
+- Added gke.png and live.png file to show screenshots of the GKE dashboard and the live app.
+
+## Section 17 - HTTPS Setup With Kubernetes (directory: `17-section`)
+- I couldn't follow these steps, as I don't own a domain, but I've written the k8s configs and the helm installation commands anyway.
+- Included a README.md file with commands to install cert manager with helm.
+- Added a certificates.yml config file with the certificate issuer and the certificate objects.
+- Added an ingress.yml file that inclues changes for the ingress object to work with the certificate issuer and certificate objects.
