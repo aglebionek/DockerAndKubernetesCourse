@@ -52,3 +52,8 @@ The template for the objects is stored in .envs.template. Locally, the file was 
 - Included a README.md file with commands to install cert manager with helm.
 - Added a certificates.yml config file with the certificate issuer and the certificate objects.
 - Added an ingress.yml file that inclues changes for the ingress object to work with the certificate issuer and certificate objects.
+
+## Section 18 - Local Development with Skaffold (directory: `18-section`)
+- Included a skaffold.yml file with a mockup configuration.
+- Included an image.png file with a schema of the skaffold workflow/a kind of explanation of how skaffold works.
+- Added a brief explanation of skaffold in the README.md file along with docs link.

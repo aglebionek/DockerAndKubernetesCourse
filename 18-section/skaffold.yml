@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+build:
+  # don't try to push the built image to a registry
+  local:
+    push: false
+  artifacts:
+    - image: # name of the image
+      context: # path to the directory containing the Dockerfile
+      docker:
+        dockerfile: # file name of the Dockerfile
+      # this is for mode 2, check image.png
+      sync:
+       # watch for changes in all .js. .html, .css files
+        manual:
+          - src: "**/*.js"
+            dest: # destination path in the container
+          - src: "**/*.html"
+            dest: # destination path in the container
+          - src: "**/*.css"
+            dest: # destination path in the container
+  
