@@ -2,7 +2,7 @@
 A repository for the [Docker and Kubernetes: The Complete Guide](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/) course on Udemy, taught by Stephen Grider.
 
 ### Note
-This repository was started a long time ago, when I first started this course. At the time, I only finished the Docker part of the course, which was extremely helpful. Now, years later, I'm going to finish the course, as both Kubernetes and AWS I want to laearn for my future career.
+This repository was started a long time ago, when I first started this course. At the time, I only finished the Docker part of the course, which was extremely helpful. I finished the course recently, as both Kubernetes and AWS might be helpful for my future career.
 
 The _OLD_ directory contains all the code I made when I first started the course. Everything else is new and will follow the structure of the course, unlike the old sections.
 
