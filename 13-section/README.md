@@ -17,6 +17,7 @@ Because of that, minikube can create a tunnel for us to access the pod in the br
 - ```minikube service client-node-port --url``` - shows the url to access the pod in the browser. Note from the command output: "Because you are using a Docker driver on linux, the terminal needs to be open to run it." The terminal hangs.
 - Running ```minikube service client-node-port url``` doesn't hang the terminal, but it automatically tries to open a browser with the tunnel url.
 - Running ```minikube service --all``` has the same effect as the previous command.
+- Dashboard URL ```minikube dashboard --url```
 
 ### Accessing the pod without a tunnel
 - ```minikube ip``` - shows the minikube ip
